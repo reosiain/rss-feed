@@ -1,6 +1,7 @@
 language: python
 script:
-  - tests/test.py
+  - cd tests
+  - test
 install:
 - pip install pipenv
 - pipenv install --dev

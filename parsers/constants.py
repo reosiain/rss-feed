@@ -1,4 +1,4 @@
-import source_specific_parsers
+import parsers.source_specific_parsers as source_specific_parsers
 
 function_router = {
     "finam01": None,
