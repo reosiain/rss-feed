@@ -1,0 +1,19 @@
+sources_rss:
+  finam: https://www.finam.ru/analysis/conews/rsspoint
+  vedomosti: https://www.vedomosti.ru/rss/rubric/business
+  finaz: https://www.finanz.ru/rss/novosti
+  investing_fund: https://ru.investing.com/rss/stock_Fundamental.rss
+  investing_stock_picks: https://ru.investing.com/rss/stock_stock_picks.rss
+  investing_funds: https://ru.investing.com/rss/stock_Fundamental.rss
+  investing_stocks: https://ru.investing.com/rss/stock_Stocks.rss
+  guru_trade: https://www.gurutrade.ru/news/business/rss/
+  prime1_econ: http://1prime.ru/export/rss2/state_regulation/index.xml
+  prime1_markets: http://1prime.ru/export/rss2/Financial_market/index.xml
+  prime1_fin: http://1prime.ru/export/rss2/finance/index.xml
+  prime1_enegro: http://1prime.ru/export/rss2/energy/index.xml
+  prime1_ind: http://1prime.ru/export/rss2/industry_and_energy/index.xml
+  prime1_consumer: http://1prime.ru/export/rss2/consumer_markets/index.xml
+  prime1_tech: https://1prime.ru/export/rss2/telecommunications_and_technologies/index.xml
+  fin_market: http://www.finmarket.ru/rss/mainnews.asp
+sources_tough:
+  interfax: https://www.interfax.ru/business/

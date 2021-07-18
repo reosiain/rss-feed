@@ -1,0 +1,19 @@
+sources_rss:
+  finam: finam01
+  vedomosti: vedom01
+  finaz: finaz01
+  investing_fund: inves01
+  investing_stock_picks: inves02
+  investing_funds: inves03
+  investing_stocks: inves04
+  guru_trade: gurut01
+  prime1_econ: prime01
+  prime1_markets: prime02
+  prime1_fin: prime03
+  prime1_enegro: prime04
+  prime1_ind: prime05
+  prime1_consumer: prime06
+  prime1_tech: prime07
+  fin_market: fmark01
+sources_tough:
+  interfax: inter01
