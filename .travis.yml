@@ -3,7 +3,10 @@ python:
   - "3.8"
 script:
   - cd tests
-  - pytest
+  - pytest --cov=./ --cov-report=xml
 install:
 - pip install pipenv
 - pipenv install --dev
+- pip install coverage
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
