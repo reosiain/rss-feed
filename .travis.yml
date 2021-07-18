@@ -10,3 +10,5 @@ install:
 - pipenv install pytest-cov
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+env:
+  - CODECOV_TOKEN='ce0eb7ca-dafd-430f-863f-1a12b54000ad'
