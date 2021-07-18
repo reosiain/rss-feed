@@ -1,3 +1,8 @@
+from pathlib import Path
+import sys
+
+sys.path.append(Path(__file__).parent.parent.__str__())
+
 from parsers import feed_functions as ff
 from participants_extractor import natasha as nat
 

@@ -1,7 +1,9 @@
 language: python
+python:
+  - "3.8"
 script:
   - cd tests
-  - test
+  - pytest
 install:
 - pip install pipenv
 - pipenv install --dev
