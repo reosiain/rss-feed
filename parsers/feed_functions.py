@@ -3,12 +3,12 @@ import datetime
 import yaml
 import feedparser
 from pathlib import Path
-from constants import *
+from parsers.constants import *
 
-with open(Path(__file__).parent / "sources.yaml", "r") as f:
+with open(Path(__file__).parent.parent / "configs" / "sources.yaml", "r") as f:
     sources = yaml.safe_load(f)
 
-with open(Path(__file__).parent / "source_ids.yaml", "r") as f:
+with open(Path(__file__).parent.parent / "configs" / "source_ids.yaml", "r") as f:
     codes = yaml.safe_load(f)["sources_rss"]
 
 

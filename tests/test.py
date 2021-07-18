@@ -1,5 +1,4 @@
-import pytest
-import feed_functions as ff
+from parsers import feed_functions as ff
 from participants_extractor import natasha as nat
 
 
