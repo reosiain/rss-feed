@@ -81,3 +81,20 @@ def finmarket_interfax_parser(url: str) -> str:
     texts = article[0].text.split("\r\n\t")
     res = "|@|".join(texts)
     return res
+
+
+def finam_parser(url: str) -> str:
+    """Specific parser for finmarket source"""
+    response = requests.get(url, headers=finaz_header)
+    if response.status_code != 200:
+        raise ValueError(
+            f"Fetching error, url replied with {response.status_code} status code"
+        )
+    bs_obj = bs4.BeautifulSoup(response.content, "html.parser")
+    article = bs_obj.find_all("div", {"class": "handmade mid f-newsitem-text"})
+    article = article[0].find_all("p")
+    texts = []
+    for elem in article:
+        texts.append(elem.text.replace("\xa0", " "))
+    res = "|@|".join(texts)
+    return res

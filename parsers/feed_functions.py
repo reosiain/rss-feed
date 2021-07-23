@@ -46,9 +46,7 @@ def clean_feed_list(parsed_feed: list) -> list:
                 element_dict["time"] = elem["published"]
             element_dict["link"] = elem["link"]
             element_dict["source"] = key
-            element_dict["hash"] = hash(
-                (element_dict["title"], element_dict["link"], element_dict["source"])
-            )
+            element_dict["hash"] = hash(element_dict["link"])
             list_.append(element_dict)
     return list_
 

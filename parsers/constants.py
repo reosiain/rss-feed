@@ -1,7 +1,7 @@
 import parsers.source_specific_parsers as source_specific_parsers
 
 function_router = {
-    "finam01": None,
+    "finam01": source_specific_parsers.finam_parser,
     "vedom01": None,
     "finaz01": source_specific_parsers.finaz_parser,
     "inves01": source_specific_parsers.investing_parser,
