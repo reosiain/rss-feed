@@ -48,6 +48,8 @@ def is_in_moex_list(comp_name: str) -> bool:
 def get_ticker(comp_name: str) -> list:
     """Returns tickers if company is in the MOEX list"""
     tickers = []
+    if comp_name.lower() == "банк":
+        return []
     for key in companies.keys():
         if comp_name.lower() in key.lower():
             tickers.append(companies[key])
