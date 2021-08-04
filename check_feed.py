@@ -3,6 +3,7 @@ from pathlib import Path
 
 sys.path.append(Path(__file__).parent.__str__())
 
+from loguru import logger
 from parsers import feed_functions as ff
 from participants_extractor import natasha as nt
 from utils_news import io
@@ -16,10 +17,10 @@ def run():
     this_iteration_hashes = io.read_storage()
 
     if len(clean) > 50:
+        logger.debug("Performing initial news dump..")
         for news in clean:
-            print("Performing initial news dump..")
             io.write_to_storage(news["link"])
-            return
+        return dump_list
 
     for news in clean:
         if str(news["link"]) in this_iteration_hashes:
@@ -49,7 +50,7 @@ def run():
         news["text"] = text.replace("\n", "").replace("\r", "")
         news["tickers"] = tickers
         dump_list.append(news)
-        print(news["title"])
+        logger.debug(news["title"])
         io.write_to_storage(news["link"])
 
         string = f'{news["title"]}*|*{str(news["time"])}*|*{news["link"]}*|*{news["source"]}*|*{news["hash"]}*|*{";".join(news["tickers"])}*|*{news["text"]}'
