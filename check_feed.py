@@ -9,12 +9,18 @@ from utils_news import io
 
 
 def run():
-
     raw_list = ff.parse_latest()
     clean = ff.clean_feed_list(raw_list)
 
     dump_list = []
     this_iteration_hashes = io.read_storage()
+
+    if len(clean) > 50:
+        for news in clean:
+            print("Performing initial news dump..")
+            io.write_to_storage(news["link"])
+            return
+
     for news in clean:
         if str(news["link"]) in this_iteration_hashes:
             io.write_to_storage(news["link"])
