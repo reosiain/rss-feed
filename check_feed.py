@@ -16,8 +16,9 @@ def run():
     dump_list = []
     this_iteration_hashes = io.read_storage()
 
-    if len(clean) > 50:
+    if len(this_iteration_hashes) == 0:
         logger.debug("Performing initial news dump..")
+        logger.debug(f"Skipping {len(clean)} new articles.")
         for news in clean:
             io.write_to_storage(news["link"])
         return dump_list
