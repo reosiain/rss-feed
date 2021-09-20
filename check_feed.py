@@ -9,19 +9,19 @@ from participants_extractor import natasha as nt
 from utils_news import io
 
 
-def run():
+def run(first):
     raw_list = ff.parse_latest()
     clean = ff.clean_feed_list(raw_list)
 
     dump_list = []
     this_iteration_hashes = io.read_storage()
 
-    if len(this_iteration_hashes) == 0:
+    if first:
         logger.debug("Performing initial news dump..")
         logger.debug(f"Skipping {len(clean)} new articles.")
         for news in clean:
             io.write_to_storage(news["link"])
-        return dump_list
+        return []
 
     for news in clean:
         if str(news["link"]) in this_iteration_hashes:
