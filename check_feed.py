@@ -5,7 +5,7 @@ sys.path.append(Path(__file__).parent.__str__())
 
 from loguru import logger
 from parsers import feed_functions as ff
-from participants_extractor import natasha as nt
+from participants_extractor import natasha_parser as nt
 from utils_news import io
 
 
