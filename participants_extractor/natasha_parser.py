@@ -1,8 +1,9 @@
+from pathlib import Path
+
+import pymorphy2
+import yaml
 from navec import Navec
 from slovnet import NER
-import pymorphy2
-from pathlib import Path
-import yaml
 
 with open(Path(__file__).parent.parent / "configs" / "moex_comps.yaml", "r") as f:
     companies = yaml.safe_load(f)["MOEX_companies"]

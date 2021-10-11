@@ -28,7 +28,12 @@ def run(first):
             io.write_to_storage(news["link"])
             continue
 
-        text = ff.get_text_from_link(news["link"], news["source"])
+        try:
+            text = ff.get_text_from_link(news["link"], news["source"])
+        except Exception as err:
+            logger.exception(news["link"])
+            continue
+
         if text is None:
             io.write_to_storage(news["link"])
             continue

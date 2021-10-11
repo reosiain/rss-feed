@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import pymorphy2
 import yaml
@@ -90,14 +91,13 @@ def relevancy_coefficient(text):
                 sentence_reverse[lead].append(follow)
 
             look_up_token = token_id
-            look_up_token_reverse = sentence[token_id]
-            while True:
+            for times in range(len(sentence)):
                 try:
                     new_look_up = sentence[look_up_token]
                     ORG_deps[ORG]["from"].add((sentence_num, new_look_up))
                     look_up_token = new_look_up
                 except KeyError:
-                    break
+                    continue
 
             try:
                 for follow in sentence_reverse[token_id]:
@@ -157,7 +157,7 @@ def relevancy_coefficient(text):
             continue
         else:
             ticker = ticker[0]
-            coefficients[ORG] = {
+            coefficients[ticker] = {
                 "ORG_ORG": {"to": 0, "from": 0},
                 "ORG_count": 0,
                 "ORG_cover": 0,
@@ -173,19 +173,17 @@ def relevancy_coefficient(text):
     coef_list = {}
     for ticker in coefficients:
         coef_1 = (
-            (
-                coefficients[ticker]["ORG_ORG"]["from"]
-                + coefficients[ticker]["ORG_ORG"]["to"]
-            )
-            / total_org_orgs
-        ) * (1 / 3)
-        coef_2 = (coefficients[ticker]["ORG_count"] / len(ORG_deps.keys())) * (1 / 3)
-        coef_3 = coefficients[ticker]["ORG_cover"] * (1 / 3)
+            coefficients[ticker]["ORG_ORG"]["from"]
+            + coefficients[ticker]["ORG_ORG"]["to"]
+        ) / total_org_orgs
+        coef_2 = coefficients[ticker]["ORG_count"] / len(markup)
+        coef_3 = coefficients[ticker]["ORG_count"] / sum(coef2_dict.values())
+        coef_4 = np.minimum(coefficients[ticker]["ORG_cover"] * np.log(len(text)), 1)
 
-        val = coef_1 + coef_2 + coef_3
-        coef_list[ticker] = val
+        val = coef_1 * (1 / 6) + coef_2 * (1 / 6) + coef_3 * (3 / 6) + coef_4 * (1 / 6)
+        coef_list[ticker] = [coef_1, coef_2, coef_3, coef_4]
 
-    return val
+    return coef_list
 
 
 if __name__ == "__main__":
@@ -196,7 +194,16 @@ if __name__ == "__main__":
     path = "/home/stbarkhatov/billy_trades"
     trades = os.listdir(path)
 
-    dict_ = {"text": [], "return": [], "coef": [], "ticker": []}
+    dict_ = {
+        "text": [],
+        "return": [],
+        "coef1": [],
+        "coef2": [],
+        "coef3": [],
+        "coef4": [],
+        "ticker": [],
+        "found_ticker": [],
+    }
     for trd in trades:
         if "json" not in trd:
             continue
@@ -208,12 +215,20 @@ if __name__ == "__main__":
         ret = _["CALCULATED_RETURN"]
         ticker = _["TICKER"]
         val = relevancy_coefficient(text)
+        if len(val) != 1:
+            continue
+        relev_ticker = list(val.keys())[0]
+        val = val[relev_ticker]
 
-        dict_["text"] = text
-        dict_["return"] = ret
-        dict_["ticker"] = ticker
-        dict_["coef"] = val
+        dict_["text"].append(text)
+        dict_["return"].append(ret)
+        dict_["ticker"].append(ticker)
+        dict_["coef1"].append(val[0])
+        dict_["coef2"].append(val[1])
+        dict_["coef3"].append(val[2])
+        dict_["coef4"].append(val[3])
+        dict_["found_ticker"].append(relev_ticker)
+        print(ret, ticker, val)
 
-        print(text, ret, ticker, val)
-        break
-    pd.DataFrame(dict_).to_excel("/home/stbarkhatov/resuts_1.xlsx")
+    tab = pd.DataFrame(dict_)
+    tab.to_excel("/home/stbarkhatov/resuts_1.xlsx")
