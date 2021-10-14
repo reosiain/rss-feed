@@ -10,7 +10,13 @@ from utils_news import io
 
 
 def run(first):
-    raw_list = ff.parse_latest()
+    try:
+        raw_list = ff.parse_latest()
+    except Exception as er:
+        logger.exception(er)
+        logger.error(f"News text parsing error")
+        return []
+
     clean = ff.clean_feed_list(raw_list)
 
     dump_list = []
@@ -31,16 +37,23 @@ def run(first):
         try:
             text = ff.get_text_from_link(news["link"], news["source"])
         except Exception as err:
-            logger.exception(news["link"])
+            logger.exception(err)
+            logger.error(news["link"])
             continue
 
         if text is None:
             io.write_to_storage(news["link"])
             continue
 
-        if text != "":
-            text_comps = nt.extract_companies(text)
-        else:
+        try:
+            if text != "":
+                text_comps = nt.extract_companies(text)
+            else:
+                io.write_to_storage(news["link"])
+                continue
+        except Exception as er:
+            logger.exception(er)
+            logger.error("Error when extracting comps from text")
             io.write_to_storage(news["link"])
             continue
 
@@ -56,7 +69,6 @@ def run(first):
         news["text"] = text.replace("\n", "").replace("\r", "")
         news["tickers"] = tickers
         dump_list.append(news)
-        logger.debug(news["title"])
         io.write_to_storage(news["link"])
 
         string = f'{news["title"]}*|*{str(news["time"])}*|*{news["link"]}*|*{news["source"]}*|*{news["hash"]}*|*{";".join(news["tickers"])}*|*{news["text"]}'
