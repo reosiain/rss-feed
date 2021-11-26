@@ -11,6 +11,11 @@ beautifulsoup4 = "*"
 pytest = "*"
 slovnet = "*"
 pymorphy2 = "*"
+natasha = "*"
+loguru = "*"
+pandas = "*"
+fastapi = "*"
+pydantic = "*"
 
 [dev-packages]
 
