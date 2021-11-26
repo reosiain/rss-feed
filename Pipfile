@@ -16,6 +16,7 @@ loguru = "*"
 pandas = "*"
 fastapi = "*"
 pydantic = "*"
+uvicorn = "*"
 
 [dev-packages]
 

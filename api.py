@@ -9,7 +9,14 @@ class Item(BaseModel):
     first: bool
 
 
-@app.get("/rss_feed/check_feed/")
-def model_predict(item: Item):
-    res = check_feed.run(item.first)
+@app.post("/rss_feed/check_feed/")
+def get_news(item: Item):
+    print(item.first)
+    if item.first == True:
+        res = check_feed.run(True)
+    elif item.first == False:
+        res = check_feed.run(False)
+    else:
+        res = check_feed.run(False)
+
     return {"payload": res}

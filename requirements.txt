@@ -1,16 +1,18 @@
 anyio==3.4.0
 appdirs==1.4.4
+asgiref==3.4.1
 attrs==21.2.0
 beautifulsoup4==4.10.0
 black==21.7b0
 certifi==2021.10.8
 charset-normalizer==2.0.8
-click==8.0.1
+click==8.0.3
 coverage==5.5
 DAWG-Python==0.7.2
 docopt==0.6.2
 fastapi==0.70.0
 feedparser==6.0.8
+h11==0.12.0
 idna==3.3
 iniconfig==1.1.1
 intervaltree==3.1.0
@@ -47,4 +49,5 @@ toml==0.10.2
 tomli==1.0.4
 typing-extensions==4.0.0
 urllib3==1.26.7
+uvicorn==0.15.0
 yargy==0.15.0
