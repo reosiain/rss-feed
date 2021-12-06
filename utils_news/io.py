@@ -11,9 +11,13 @@ def dump(news):
     news_db.insert_one(news)
 
 
+def refresh_fresh_news():
+    """Delete all unprocessed news"""
+    fresh_news.delete_many({})
+
 def was_processed(link:str) -> bool :
     num = news_db.find({'link': link})
-    if num.count() != 0:
+    if len(list(num)) != 0:   # absolute garbage
         False
     else:
         True
