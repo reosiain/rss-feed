@@ -1,3 +1,4 @@
+import datetime
 import sys
 from pathlib import Path
 import time
@@ -72,7 +73,7 @@ def run(first) -> None:
             io.dump(news)
             continue
 
-        news["text"] = text.replace("\n", "").replace("\r", "")
+        news["text"] = text.replace("\n", "").replace("\r", "").replace('"', "")
         news["tickers"] = tickers
         news['TAG'] = 'ok'
         io.store_new(news)
@@ -82,6 +83,8 @@ def run(first) -> None:
 if __name__ == '__main__':
     first = True
     while True:
+        io.refresh_fresh_news()
+        logger.info(f'Cycle at {datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S")}')
         run(first)
         first = False
         time.sleep(20)
