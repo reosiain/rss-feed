@@ -15,12 +15,13 @@ def refresh_fresh_news():
     """Delete all unprocessed news"""
     fresh_news.delete_many({})
 
+
 def was_processed(link:str) -> bool :
     num = news_db.find({'link': link})
     if len(list(num)) != 0:   # absolute garbage
-        False
+        return True
     else:
-        True
+        return False
 
 
 def store_new(news) -> None :
