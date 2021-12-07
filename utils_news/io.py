@@ -1,24 +1,28 @@
-from pathlib import Path
+import os
+
+from pymongo import MongoClient
+
+client = MongoClient(os.getenv('MONGO_HOST'), 1002)
+news_db = client["news"]["all_feed"]
+fresh_news = client["news"]["fresh"]
 
 
-def write_to_storage(hassh: str):
-
-    with open(Path(__file__).parent.parent / "storage" / "hashes.txt", "a") as f:
-        f.write(str(hassh))
-        f.write("\n")
-        f.close()
+def dump(news):
+    news_db.insert_one(news)
 
 
-def read_storage():
-    with open(Path(__file__).parent.parent / "storage" / "hashes.txt", "r") as f:
-        alls = f.readlines()
-    alls = [x.replace("\n", "") for x in alls]
-    alls = set(alls)
-    return alls
+def refresh_fresh_news():
+    """Delete all unprocessed news"""
+    fresh_news.delete_many({})
+
+def was_processed(link:str) -> bool :
+    num = news_db.find({'link': link})
+    if len(list(num)) != 0:   # absolute garbage
+        False
+    else:
+        True
 
 
-def dump_news(text):
-    with open(Path(__file__).parent.parent / "storage" / "news.txt", "a") as f:
-        f.write(text)
-        f.write("\n")
-        f.close()
+def store_new(news) -> None :
+    fresh_news.insert_one(news)
+

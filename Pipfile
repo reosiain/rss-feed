@@ -17,6 +17,7 @@ pandas = "*"
 fastapi = "*"
 pydantic = "*"
 uvicorn = "*"
+pymongo = "*"
 
 [dev-packages]
 

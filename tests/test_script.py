@@ -4,7 +4,8 @@ import sys
 sys.path.append(Path(__file__).parent.parent.__str__())
 
 from parsers import feed_functions as ff
-from participants_extractor import natasha as nat
+import check_feed
+from utils_news import io
 
 
 def test_text_grabber():
@@ -19,15 +20,11 @@ def test_text_grabber():
         assert text is not None
 
 
-def test_natasha():
+def test_io():
 
-    text = """В лидерах роста к середине сессии были расписки TCS Group (+1,91%) и '
-    'привилегированные акции Татнефти (+1,12%). В лидерах снижения находились '
-    'привилегированные акции Транснефти (-5,20%), которые упали после закрытия '
-    'реестра по дивидендам, гдр X5 Retail Group (-1,66%), бумаги АЛРОСы (-1,37%) '
-    'и Северстали (-1,26%). |@|Акции X5 Retail Group, АЛРОСы и Северстали в '
-    'пятницу корректировались, несмотря на публикацию сильных операционных и '
-    'финансовых результатов за 2-й квартал текущего года."""
+    init_count = io.news_db.find().count()
 
-    list_ = nat.extract_companies(text)
-    assert len(list_) != 0
+    check_feed.run(True)
+
+    assert io.news_db.find().count() > init_count
+

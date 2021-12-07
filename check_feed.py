@@ -1,5 +1,7 @@
+import datetime
 import sys
 from pathlib import Path
+import time
 
 sys.path.append(Path(__file__).parent.__str__())
 
@@ -9,7 +11,7 @@ from participants_extractor import natasha_parser as nt
 from utils_news import io
 
 
-def run(first):
+def run(first) -> None:
     try:
         raw_list = ff.parse_latest()
     except Exception as er:
@@ -18,20 +20,16 @@ def run(first):
         return []
 
     clean = ff.clean_feed_list(raw_list)
-
-    dump_list = []
-    this_iteration_hashes = io.read_storage()
-
     if first:
         logger.debug("Performing initial news dump..")
         logger.debug(f"Skipping {len(clean)} new articles.")
         for news in clean:
-            io.write_to_storage(news["link"])
+            news['TAG'] = 'Initial  dump'
+            io.dump(news)
         return []
 
     for news in clean:
-        if str(news["link"]) in this_iteration_hashes:
-            io.write_to_storage(news["link"])
+        if io.was_processed(news["link"]):
             continue
 
         try:
@@ -39,22 +37,29 @@ def run(first):
         except Exception as err:
             logger.exception(err)
             logger.error(news["link"])
+            news['TAG'] = 'fetching error'
+            io.dump(news)
             continue
 
         if text is None:
-            io.write_to_storage(news["link"])
+            news['TAG'] = 'no text'
+            io.dump(news)
             continue
 
         try:
             if text != "":
                 text_comps = nt.extract_companies(text)
             else:
-                io.write_to_storage(news["link"])
+                news['TAG'] = 'no text'
+                io.dump(news)
                 continue
+
         except Exception as er:
             logger.exception(er)
             logger.error("Error when extracting comps from text")
-            io.write_to_storage(news["link"])
+
+            news['TAG'] = 'unknown error'
+            io.dump(news)
             continue
 
         tickers = []
@@ -64,14 +69,22 @@ def run(first):
             tickers.extend(tick)
 
         if len(tickers) == 0:
-            io.write_to_storage(news["link"])
+            news['TAG'] = 'no ticker'
+            io.dump(news)
             continue
-        news["text"] = text.replace("\n", "").replace("\r", "")
+
+        news["text"] = text.replace("\n", "").replace("\r", "").replace('"', "")
         news["tickers"] = tickers
-        dump_list.append(news)
-        io.write_to_storage(news["link"])
+        news['TAG'] = 'ok'
+        io.store_new(news)
+        io.dump(news)
 
-        string = f'{news["title"]}*|*{str(news["time"])}*|*{news["link"]}*|*{news["source"]}*|*{news["hash"]}*|*{";".join(news["tickers"])}*|*{news["text"]}'
-        io.dump_news(string)
 
-    return dump_list
+if __name__ == '__main__':
+    first = True
+    while True:
+        io.refresh_fresh_news()
+        logger.info(f'Cycle at {datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S")}')
+        run(first)
+        first = False
+        time.sleep(20)
