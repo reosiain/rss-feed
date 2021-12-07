@@ -35,7 +35,7 @@ def run(first) -> None:
         try:
             text = ff.get_text_from_link(news["link"], news["source"])
         except Exception as err:
-            logger.exception(err)
+            #logger.exception(err)
             logger.error(news["link"])
             news['TAG'] = 'fetching error'
             io.dump(news)
