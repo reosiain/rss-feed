@@ -18,6 +18,7 @@ fastapi = "*"
 pydantic = "*"
 uvicorn = "*"
 pymongo = "*"
+starlette = "*"
 
 [dev-packages]
 

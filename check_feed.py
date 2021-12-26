@@ -35,7 +35,7 @@ def run(first) -> None:
         try:
             text = ff.get_text_from_link(news["link"], news["source"])
         except Exception as err:
-            logger.exception(err)
+            #logger.exception(err)
             logger.error(news["link"])
             news['TAG'] = 'fetching error'
             io.dump(news)
@@ -79,6 +79,15 @@ def run(first) -> None:
         io.store_new(news)
         io.dump(news)
 
+
+def launch_module():
+    first = True
+    while True:
+        io.refresh_fresh_news()
+        logger.info(f'Cycle at {datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S")}')
+        run(first)
+        first = False
+        time.sleep(20)
 
 if __name__ == '__main__':
     first = True
