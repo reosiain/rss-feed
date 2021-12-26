@@ -80,6 +80,15 @@ def run(first) -> None:
         io.dump(news)
 
 
+def launch_module():
+    first = True
+    while True:
+        io.refresh_fresh_news()
+        logger.info(f'Cycle at {datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S")}')
+        run(first)
+        first = False
+        time.sleep(20)
+
 if __name__ == '__main__':
     first = True
     while True:
