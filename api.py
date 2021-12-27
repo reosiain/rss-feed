@@ -40,11 +40,7 @@ def run():
 
 @app.get("/rss_feed/ping")
 def ping():
-
-    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    data = json.dumps({'text': "Сбербанк заработал рекордную прибыль"})
-    a = requests.post("http://192.168.55.3:1001/sentiment/predict_one", data=data, headers=headers)
-    return {"result": a.content}
+    return {"result": {}}
 
 
 @app.post("/rss_feed/import_quik")
