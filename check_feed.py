@@ -74,6 +74,10 @@ def run(first) -> None:
             continue
 
         news["text"] = text.replace("\n", "").replace("\r", "").replace('"', "")
+
+        if news.get('title') is not None:
+            news["text"] = news["title"] + "|@|" + news["text"] # concat text with title as paragraph.
+
         news["tickers"] = tickers
         news['TAG'] = 'ok'
         io.store_new(news)
