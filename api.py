@@ -46,9 +46,9 @@ def ping():
 @app.post("/rss_feed/import_quik")
 async def import_quik(news: Request):
     _ = await news.json()
-    news = json.loads(_)
-    io.store_new(news)
-    io.dump(news)
+    #news = json.loads(_)
+    io.store_new(_)
+    io.dump(_)
     logging.info(news)
 
 
