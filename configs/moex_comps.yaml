@@ -2,17 +2,21 @@ MOEX_companies :
     Etalon Group: ETLN
     Globaltrans: GLTR
     HeadHunter: HHRU
-    Mail.ru Group: MAIL
+    Mail.ru Group: VKCO
+    Вконтакте: VKCO
     MD Medical Group: MDMG
     O'KEY Group: OKEY
     Ozon: OZON
+    Озон: OZON
     Petropavlovsk: POGR
     Qiwi: QIWI
     TCS Group (Тинькофф): TCSG
     X5 Retail Group: FIVE
     Акрон: AKRN
     Алроса: ALRS
+    Alrosa: ALRS
     Аэрофлот: AFLT
+    Aeroflot: AFLT
     Башнефть: BANE
     БСПб: BSPB
     ВСМПО-АВИСМА: VSMO
@@ -31,6 +35,7 @@ MOEX_companies :
     Магнит: MGNT
     МГТС: MGTS
     Мечел: MTLR
+    Mechel: MTLR
     МКБ: CBOM
     ММК: MAGN
     Мосбиржа: MOEX
@@ -61,6 +66,7 @@ MOEX_companies :
     Сафмар: SFIN
     Сбербанк: SBER
     Северсталь: CHMF
+    Severstal: CHMF
     АФК Система: AFKS
     Совкомфлот: FLOT
     Сургутнефтегаз: SNGS
@@ -75,3 +81,4 @@ MOEX_companies :
     Энел: ENRU
     Юнипро: UPRO
     Яндекс: YNDX
+    
