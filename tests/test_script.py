@@ -3,28 +3,19 @@ import sys
 
 sys.path.append(Path(__file__).parent.parent.__str__())
 
-from parsers import feed_functions as ff
-import check_feed
-from utils_news import io
+from participants_extractor import natasha_parser as nt
 
 
-def test_text_grabber():
+def test_extraction():
+    """Not a real test"""
+    with open(Path(__file__).parent / 'texts', 'r') as f:
+        texts = f.readlines()
 
-    raw_list = ff.parse_latest()
-    clean = ff.clean_feed_list(raw_list)
-    text = ff.get_text_from_link(clean[120]["link"], clean[120]["source"])
-    print(text)
-    if clean[120]["source"] == "finam01":
-        assert text is None
-    else:
-        assert text is not None
+    new = []
+    for text in texts:
+        t_ = text.replace('\xa0', ' ').replace('\t', ' ')
+        new.append(t_)
+    for t in new:
+        print(nt.extract_companies(t))
 
-
-def test_io():
-
-    init_count = io.news_db.find().count()
-
-    check_feed.run(True)
-
-    assert io.news_db.find().count() > init_count
-
+    assert True
