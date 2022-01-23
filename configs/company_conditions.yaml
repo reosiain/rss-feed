@@ -1,0 +1,324 @@
+MOEX_companies :
+    GLTR:
+        positive:
+            - 'globaltrans'
+            - 'глобалтранс'
+            - "gltr"
+
+    HHRU:
+        positive:
+            - 'headhunter'
+            - 'хэдхантер'
+            - "хэд хантер"
+            - 'hhru'
+    VKCO:
+        positive:
+            - 'вконтакте'
+            - 'vkontakte'
+            - "vk company"
+            - 'mail.ru'
+            - 'мэйл ру'
+            - 'мэйлру'
+    MDMG:
+        positive:
+            - 'md medical group'
+            - 'мать и дитя'
+
+    OKEY:
+        positive:
+            - 'окей'
+            - 'о’кей'
+            - "o’key group"
+            - "okey group"
+    OZON:
+        positive:
+            - "ozon"
+            - 'озон'
+    POGR:
+        positive:
+            - 'pogr'
+            - 'petropavlovsk'
+            - 'petropavlovsk plc'
+            - 'компания петропавловск'
+    QIWI:
+        positive:
+            - 'qiwi'
+            - 'киви'
+            - 'киви банк'
+    TCSG:
+        positive:
+            - 'тинькофф'
+            - 'тиньков банк'
+            - 'тинькофф банк'
+            - 'tcsg'
+    FIVE:
+        positive:
+            - 'x5'
+            - 'x5 retail'
+    AKRN:
+        positive:
+            - 'акрон'
+    ALRS:
+        positive:
+            - 'alrosa'
+            - 'алроса'
+    AFLT:
+        positive:
+            - 'аэрофлот'
+            - 'aeroflot'
+    BANE:
+        positive:
+            - 'башнефть'
+            - 'bashneft'
+    BSPB:
+        positive:
+            - 'банк санкт-петербург'
+    VSMO:
+        positive:
+            - 'ВСМПО-АВИСМА'
+    VTBR:
+        positive:
+            - 'ВТБ'
+            - 'VTB'
+            - 'банк втб'
+            - 'втб банк'
+        negative:
+            - 'ВТБ капитал'
+            - 'VTB Capital'
+    GAZP:
+        positive:
+            - 'газпром'
+            - 'gazprom'
+        negative:
+            - 'газпром нефть'
+            - 'газпромнефть'
+            - 'gazprom neft'
+            - 'gazpromneft'
+    SIBN:
+        positive:
+            - 'газпром нефть'
+            - 'газпромнефть'
+            - 'gazprom neft'
+            - 'gazpromneft'
+        negative:
+            - 'газпром'
+            - 'gazprom'
+    SMLT:
+        positive:
+            - 'гк самолет'
+            - 'группа самолет'
+            - 'группа "самолет"'
+    PIKK:
+        positive:
+            - 'гк пик'
+            - 'группа пик'
+    DSKY:
+        positive:
+            - 'детский маир'
+            - 'detesky mir'
+        negative:
+            - 'мир'
+            - 'mir'
+            - 'карта мир'
+    IRAO:
+        positive:
+            - 'Интер РАО ЕЭС'
+            - 'Интер РАО'
+            - 'Inter RAO'
+    LNTA:
+        positive:
+            - 'lenta'
+            - 'лента'
+    LSNG:
+        positive:
+            - 'Ленэнерго'
+    LSRG:
+        positive:
+            - 'Лср'
+            - 'группа лср'
+            - 'LSR Group'
+            - 'пао группа ЛСР'
+    LKOH:
+        positive:
+            - 'Лукойл'
+            - 'Lukoil'
+    MVID:
+        positive:
+            - 'М.Видео'
+            - 'мвидео'
+            - 'm video'
+    MGNT:
+        positive:
+            - 'Магнит'
+            - 'Magnit'
+            - 'пао магнит'
+    MGTS:
+        positive:
+            - 'МГТС'
+            - 'MGTS'
+    MTLR:
+        positive:
+            - 'Мечел'
+            - 'Mechel'
+    CBOM:
+        positive:
+            - 'московский кредитный банк'
+            - 'МКБ'
+    MAGN:
+        positive:
+            - 'Магнитогорский металлургический комбинат'
+            - 'ММК'
+    MSNG:
+        positive:
+            - 'Мосэнерго'
+    MSRS:
+        positive:
+            - 'МОЭСК'
+    MTSS:
+        positive:
+            - 'pao MTS'
+            - 'пао мтс'
+    NLMK:
+        positive:
+            - 'НЛМК'
+            - 'новолипецкий'
+            - 'Новолипецкий металлургический комбинат'
+            - 'группа нлмк'
+    NMTP:
+        positive:
+            - 'Новороссийский морской торговый порт'
+            - 'Новороссийский морской порт'
+            - 'НМТП'
+    NVTK:
+        positive:
+            - 'Новатэк'
+            - 'Novatek'
+    GMKN:
+        positive:
+            - 'Норникель'
+            - 'ПАО ГМК Норильский ниикель'
+            - 'Norilsk nickel'
+    OGKB:
+        positive:
+            - 'ОГК-2'
+    POLY:
+        positive:
+            - 'Полиметалл'
+            - 'Polymetal'
+    PLZL:
+        positive:
+            - 'Полюс'
+            - 'Полюс золото'
+            - 'polyus'
+            - 'polyus gold'
+    RASP:
+        positive:
+            - 'Распадская'
+            - 'Raspadskaya'
+    ROSN:
+        positive:
+            - 'Роснефть'
+            - 'Rosneft'
+    RSTI:
+        positive:
+            - 'Россети'
+            - 'Rosseti'
+    RTKM:
+        positive:
+            - 'Ростелеком'
+            - 'Rostelecom'
+    AGRO:
+        positive:
+            - 'Русагро'
+            - 'Rusagro'
+    RUAL:
+        positive:
+            - 'Русал'
+            - 'Rusal'
+    HYDR:
+        positive:
+            - 'Русгидро'
+    AQUA:
+        positive:
+            - 'Русская Аквакультура'
+    RNFT:
+        positive:
+            - 'РуссНефть'
+    SFIN:
+        positive:
+            - 'Сафмар'
+    SBER:
+        positive:
+            - 'сбербанк'
+            - 'sberbank'
+            - 'sber'
+            - 'сбер банк'
+            - 'сбер'
+        negative:
+            - 'сбермаркет'
+            - 'сбермегамаркет'
+            - 'sber cib'
+    CHMF:
+        positive:
+            - 'Северсталь'
+            - 'Severstal'
+    AFKS:
+        positive:
+            - 'АФК Система'
+            - 'AFK Systems'
+            - 'AFK Systema'
+        negative:
+            - 'система'
+            - 'system'
+    FLOT:
+        positive:
+            - 'Совкомфлот'
+            - 'SCF Group'
+            - 'пао совкомфлот'
+    SNGS:
+        positive:
+            - 'Сургутнефтегаз'
+            - 'Surgutneftegas'
+    TATN:
+        positive:
+            - 'Татнефть'
+            - 'Tatneft'
+    TGKA:
+        positive:
+            - 'ТГК-1'
+            - 'Tatneft'
+    TRMK:
+        positive:
+            - 'ТМК'
+    TRNFP:
+        positive:
+            - 'Транснефть'
+            - 'transneft'
+    PHOR:
+        positive:
+            - 'Фосагро'
+            - 'phosagro'
+    FEES:
+        positive:
+            - 'ФСК еэс'
+    GCHE:
+        positive:
+            - 'Черкизово'
+    ENPG:
+        positive:
+            - 'Эн+ Груп'
+            - 'En+'
+    UPRO:
+        positive:
+            - 'Юнипро'
+            - 'Unipro'
+    ENRU:
+        positive:
+            - 'Энел'
+            - 'Enel'
+    YNDX:
+        positive:
+            - 'Яндекс'
+            - 'Yandex'
+
+    

@@ -29,13 +29,14 @@ def run(first) -> None:
         return []
 
     for news in clean:
+        tickers = None
         if io.was_processed(news["link"]):
             continue
 
         try:
             text = ff.get_text_from_link(news["link"], news["source"])
         except Exception as err:
-            #logger.exception(err)
+
             logger.error(news["link"])
             news['TAG'] = 'fetching error'
             io.dump(news)
@@ -48,7 +49,7 @@ def run(first) -> None:
 
         try:
             if text != "":
-                text_comps = nt.extract_companies(text)
+                tickers = nt.extract_companies(text.replace('\r\n', ' '))
             else:
                 news['TAG'] = 'no text'
                 io.dump(news)
@@ -62,19 +63,12 @@ def run(first) -> None:
             io.dump(news)
             continue
 
-        tickers = []
-        for comp_extracted in text_comps:
-            comp_name = comp_extracted[0]
-            tick = nt.get_ticker(comp_name)
-            tickers.extend(tick)
-
-        if len(tickers) == 0:
+        if len(tickers) == 0 or tickers is None:
             news['TAG'] = 'no ticker'
             io.dump(news)
             continue
 
-        news["text"] = text.replace("\n", "").replace("\r", "").replace('"', "")
-
+        news["text"] = text.replace("\r\n", "|@|").replace('"', "")
         if news.get('title') is not None:
             news["text"] = news["title"] + "|@|" + news["text"] # concat text with title as paragraph.
 
